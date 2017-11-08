@@ -1,0 +1,20 @@
+title Smart Mirror
+
+Particle->ParticleCloud: variable values
+ParticleCloud->FrontEnd: variable values
+User->3rdParty: data input
+FrontEnd->3rdParty: data request
+3rdParty->FrontEnd: data
+ParticleCloud->3rdParty: data request
+3rdParty->ParticleCloud: data
+
+FrontEnd->User: settings pane
+FrontEnd->User: current layout
+User->FrontEnd: Change settings/layout
+FrontEnd->ParticleCloud: change variable function
+ParticleCloud->Particle: change variable function
+Particle->ParticleCloud: confirm function
+FrontEnd->User: current layout
+
+
+
