@@ -3,6 +3,7 @@
 
 void setup() {
     //API setup function
+    apiSetup();
 
 }
 
