@@ -9,14 +9,13 @@ function swapElement(hide, show) {
   // console.log(currentView);
   console.log(document.getElementById("weather-modal").style.display);
 }
+currentView = "calendar-modal";
 document.getElementById("iterate").addEventListener("click", function() {
   console.log(document.getElementById("weather-modal").style.display);
-  if(document.getElementById("weather-modal").style.display = 'block'){
-    console.log('weather');
+  if(currentView = "weather-modal"){
     swapElement("weather-modal", "calendar-modal");
   }
-  else if(document.getElementById("calendar-modal").style.display = 'block'){
-    console.log('calendar');
+  else if(currentView = "calendar-modal"){
     swapElement("calendar-modal", "weather-modal");
   }
 });
