@@ -1,5 +1,6 @@
+
 var currentView = "weather-modal";
-document.getElementById("iterate").addEventListener("click", function() {
+document.getElementById("iterate-forwards").addEventListener("click", function() {
   if(currentView = "weather-modal"){
     swapElement("weather-modal", "calendar-modal");
   } else if(currentView = "calendar-modal"){
@@ -14,8 +15,5 @@ function swapElement(hide, show) {
   document.getElementById(hide).style.display = 'none';
   document.getElementById(show).style.display = 'block';
   currentView = show;
+  console.log(view);
 }
-
-document.getElementById("settings").addEventListener("click", function() {
-  // popup
-});
