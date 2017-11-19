@@ -5,7 +5,7 @@
  * Date: Fall 2017
  */
 
- #include "MMHWAPI/magicMirrorHWAPI.h"
+ #include "API/magicMirrorHWAPI.h"
 
 
  void setup() {
