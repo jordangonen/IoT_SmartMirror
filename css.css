@@ -32,3 +32,6 @@ li:hover {
   text-align: center;
   padding-top: 5%;
 }
+#calendar-modal {
+  display: none;
+}
