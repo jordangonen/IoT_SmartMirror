@@ -25,13 +25,28 @@ li:hover {
 
   width: 40%;
   height: 300px;
-  border: 1px solid black;
+  border: 0.5px solid black;
   box-sizing: border-box;
+
 }
 .modal-title {
   text-align: center;
   padding-top: 5%;
+  padding-bottom: 1%;
 }
+
+.control-buttons {
+  padding-bottom: 2%;
+  padding-top: 2%;
+  text-align: center;
+}
+
 #calendar-modal {
   display: none;
+  text-align: center;
+}
+
+#weather-modal {
+  text-align: center;
+  padding-top: 5%;
 }

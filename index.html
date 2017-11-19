@@ -10,23 +10,31 @@
 <!-- put nav bar  -->
 <!-- put nav menu  -->
 <ul>
-  <li>Settings</li>
+  <li id="account-settings">Account Settings</li>
 </ul>
 
 <!-- put center modal -->
 
-<div class="modal-title"><h3>Control Center</h3></div>
+<div class="modal-title"><h3>Control Center</h3>
+  <div class="device-state">
+  </div>
+</div>
 
 <div class="center-modal">
   <div id="weather-modal">
-    <p>weather</p>
+    <p>The Weather Is</p>
+    <p id="weather-temp">TEST</p>
   </div>
   <div id="calendar-modal">
     <p>calendar</p>
   </div>
-  <button id="iterate">Iterate</button>
-
 </div>
+
+<div class="control-buttons">
+  <button id="iterate-backwards">Prev.</button>
+  <button id="iterate-forwards">Next</button>
+</div>
+
 
 <!-- modal 1 -->
 
