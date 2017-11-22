@@ -1,9 +1,8 @@
-
 var currentView = "weather-modal";
 document.getElementById("iterate-forwards").addEventListener("click", function() {
-  if(currentView = "weather-modal"){
+  if (currentView = "weather-modal") {
     swapElement("weather-modal", "calendar-modal");
-  } else if(currentView = "calendar-modal"){
+  } else if (currentView = "calendar-modal") {
     swapElement("calendar-modal", "weather-modal");
   }
 });
