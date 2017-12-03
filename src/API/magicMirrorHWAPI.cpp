@@ -112,6 +112,18 @@ void FSM (int arg) {
 
 
 }
+int zipSetter(String command)
+{
+  // look for the matching argument "coffee" <-- max of 64 characters long
+  if(command == "coffee")
+  {
+    // some example functions you might have
+    //activateWaterHeater();
+    //activateWaterPump();
+    return 1;
+  }
+  else return -1;
+}
 
 
 
