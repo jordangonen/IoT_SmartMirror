@@ -1,0 +1,12 @@
+#main {
+  display: none;
+}
+
+#login-btn {
+  padding: 10px;
+}
+.center {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+}
