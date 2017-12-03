@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title>MagicMirror</title>
+        <link rel="stylesheet" type="text/css" href="css/css.css">
+        <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+        <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+        <script type="text/javascript" src="http://cdn.jsdelivr.net/particle-api-js/5/particle.min.js"></script>
+    </head>
+    <body>
+      <ons-page>
+          <div id="login" class="center">
+            <div>
+              <input type="email" class="text-input text-input--underbar" placeholder="email" id="email"/>
+            </div>
+            <div>
+              <input type="password" class="text-input text-input--underbar" placeholder="password" id="password"/>
+            </div>
+            <button class="button" id="login-btn">Login</button>
+          </div>
+
+          <div id="main" class="center">
+            <div>
+              <input class="num-input text-input text-input--underbar" type="number" min="00000" max="99999" value="2" id="zip-input">
+            </div>
+            <button class="button" id="zip-input-btn">Submit</button>
+          </div>
+
+      </ons-page>
+
+
+
+        <script type="text/javascript" src="js/javascript.js"></script>
+        <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    </body>
+</html>
