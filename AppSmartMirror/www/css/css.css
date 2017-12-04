@@ -1,6 +1,6 @@
-#main {
+/*#main {
   display: none;
-}
+}*/
 
 #login-btn {
   padding: 10px;
@@ -53,10 +53,26 @@
   margin-bottom: 100px;
   padding: 1px 0 0 0 ;
 }
+#metric-card {
+  margin-top: 5%;
+  height: 150px;
+}
+#metric-settings {
+  height: 20px;
+  width: auto;
+  margin-bottom: 100px;
+  padding: 1px 0 0 0 ;
+}
 #layout-enter {
   padding-bottom: 100px;
 }
-#button-group {
+#button-group-1 {
+  width: 280px;
+  margin-top: 0;
+  padding-top: 5px;
+  margin-left: 8%;
+}
+#button-group-2{
   width: 280px;
   margin-top: 0;
   padding-top: 5px;
