@@ -1,5 +1,4 @@
 var deviceId = "5b004b000f51353338363333";
-var name = "jbf_photon"
 
 var particle = new Particle();
 
@@ -21,7 +20,7 @@ function logSuccess(data) {
   document.getElementById("zip-input-btn").addEventListener("click", function() {
     currentZip = String(document.getElementById("zip-input").value);
 
-    var sendZip = particle.callFunction({ deviceId: deviceId, name: name, argument: currentZip, auth: token });
+    var sendZip = particle.callFunction({ deviceId: deviceId, name: 'zipSetter', argument: currentZip, auth: token });
 
     sendZip.then(
     function(data) {
