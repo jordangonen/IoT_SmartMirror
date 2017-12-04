@@ -6,9 +6,25 @@ const int TFT_RST = -1;
 int onDeck = 0;
 int done = 0;
 int sent = 0;
+int zip = 00000;
 String spotSong = "";
 Adafruit_HX8357 tft = Adafruit_HX8357(TFT_CS, TFT_DC, TFT_RST);
 int state = 0;
+int zipSetter(String command)
+{
+
+  if(command.length() == 5){
+    if (command.toInt() != 0) {
+        zip = (int)command.toInt();
+          Serial.println("GOT ZIP");
+          Serial.println(zip);
+          return 1;
+    }
+
+  }
+  else return -1;
+}
+
 void trelloNewOnDeck(const char *event, const char *data){
   Serial.println("ondeck ran");
     onDeck = onDeck + 1;
@@ -65,6 +81,7 @@ void apiSetup() {
   Particle.subscribe("trello/newDone", trelloNewDone);
   tft.fillScreen(HX8357_BLACK);
   tft.setTextSize(5);
+   Particle.function("zipSetter", zipSetter);
 
 
 };
@@ -112,18 +129,7 @@ void FSM (int arg) {
 
 
 }
-int zipSetter(String command)
-{
-  // look for the matching argument "coffee" <-- max of 64 characters long
-  if(command == "coffee")
-  {
-    // some example functions you might have
-    //activateWaterHeater();
-    //activateWaterPump();
-    return 1;
-  }
-  else return -1;
-}
+
 
 
 
