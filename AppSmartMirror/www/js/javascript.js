@@ -38,3 +38,20 @@ function logFail(data) {
 }
 
 var currentZip;
+
+var layout = "1";
+document.getElementById("layout-day").addEventListener("click", function() {
+    layout=document.getElementById("layout-day-input").value;
+    alert("Layout Changed");
+  }
+);
+document.getElementById("layout-three-day").addEventListener("click", function() {
+    layout=document.getElementById("layout-three-day-input").value;
+    alert("Layout Changed");
+  }
+);
+document.getElementById("layout-five-day").addEventListener("click", function() {
+    layout=document.getElementById("layout-five-day-input").value;
+    alert("Layout Changed");
+  }
+);
