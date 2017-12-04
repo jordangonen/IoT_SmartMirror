@@ -1,9 +1,11 @@
-/*#main {
+#main {
   display: none;
-}*/
+}
 
 #login-btn {
   padding: 10px;
+  margin-top: 10%;
+  width: 40%;
 }
 .center {
   margin: auto;

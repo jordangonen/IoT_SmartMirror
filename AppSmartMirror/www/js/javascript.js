@@ -42,16 +42,40 @@ var currentZip;
 var layout = "1";
 document.getElementById("layout-day").addEventListener("click", function() {
     layout=document.getElementById("layout-day-input").value;
+    var sendLayout = particle.callFunction({ deviceId: deviceId, name: 'sendLayout', argument: layout, auth: token });
+    sendLayout.then(
+    function(data) {
+      console.log('Function called succesfully:', data);
+    }, function(err) {
+      console.log('An error occurred:', err);
+    });
     alert("Layout Changed");
-  }
-);
+  });
+
+
 document.getElementById("layout-three-day").addEventListener("click", function() {
     layout=document.getElementById("layout-three-day-input").value;
+
+    var sendLayout = particle.callFunction({ deviceId: deviceId, name: 'sendLayout', argument: layout, auth: token });
+
+    sendLayout.then(
+    function(data) {
+      console.log('Function called succesfully:', data);
+    }, function(err) {
+      console.log('An error occurred:', err);
+    });
     alert("Layout Changed");
-  }
-);
+  });
 document.getElementById("layout-five-day").addEventListener("click", function() {
     layout=document.getElementById("layout-five-day-input").value;
+
+    var sendLayout = particle.callFunction({ deviceId: deviceId, name: 'sendLayout', argument: layout, auth: token });
+
+    sendLayout.then(
+    function(data) {
+      console.log('Function called succesfully:', data);
+    }, function(err) {
+      console.log('An error occurred:', err);
+    });
     alert("Layout Changed");
-  }
-);
+  });
