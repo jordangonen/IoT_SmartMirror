@@ -8,14 +8,46 @@
  #include "API/magicMirrorHWAPI.h"
  #include <ArduinoJson.h>
 
-String zipCode = "";
-String lastZip = "";
+
+ const char* conditions1;
+ const char* conditions2;
+ const char* conditions3;
+ double high1;
+ double low1;
+ double high2;
+ double low2;
+ double high3;
+ double low3;
+
+ const char* name;
+ const char* condition;
+ double temp;
+ double hum;
+ double windS;
+ double windD;
+
+String zipCode = "10583";
+String lastZip = "10583";
 String layout = "simple";
 String unit = "F";
 
+void apiFetch() {
+   Particle.publish("getCurrentWeather", zipCode);
+   Particle.publish("getThreeDayWeather", zipCode);
+   delay(3000);
+   screenSetter();
+}
+
+Timer apiFetchTimer(30000, apiFetch);
 
  void setup() {
    Serial.begin(9600);
+   Particle.variable("currentZip", zipCode);
+
+   Particle.variable("currentUnit", unit);
+   Particle.variable("layout", layout);
+
+
    Particle.subscribe("hook-response/getCurrentWeather/0", currentWeatherHandler, MY_DEVICES);
    Particle.subscribe("hook-error/getCurrentWeather/0", currentWeatherError, MY_DEVICES);
 
@@ -24,6 +56,7 @@ String unit = "F";
    Particle.function("zipPost", zipPost);
    Particle.function("layoutSetter", layoutSetter);
    Particle.function("unitSetter", unitSetter);
+   apiFetchTimer.start();
 
 
  }
@@ -38,7 +71,7 @@ String unit = "F";
 
  void currentWeatherHandler(const char *event, const char *data) {
    // Handle the webhook response
-   Serial.println(data[2]);
+
 
    String str = String(data);
 
@@ -60,14 +93,23 @@ String unit = "F";
     Serial.println("parseObject() failed");
     return;
   }
-  const char* name    = root["name"];
-  const char* condition  = root["condition"];
-  double temp = root["temp"];
-  double hum = root["hum"];
-  double windS = root["windS"];
-  double windD = root["windD"];
+   name    = root["name"];
+   condition  = root["condition"];
+   temp = root["temp"];
+   hum = root["hum"];
+   windS = root["windS"];
+   windD = root["windD"];
 
 
+   if ( unit == "F") {
+     temp = temp*1.8-459.67;
+   }
+   if (unit == "C") {
+     temp = temp-273.15;
+   }
+
+
+  screenSetter();
  }
 
  void currentWeatherError(const char *event, const char *data) {
@@ -100,16 +142,17 @@ String unit = "F";
     Serial.println("parseObject() failed");
     return;
   }
-  const char* conditions1    = root["conditions1"];
-  const char* conditions2    = root["conditions2"];
-  const char* conditions3    = root["conditions3"];
-  double high1 = root["high1"];
-  double low1 = root["low1"];
-  double high2 = root["high2"];
-  double low2 = root["low2"];
-  double high3 = root["high3"];
-  double low3 = root["low3"];
+   conditions1    = root["conditions1"];
+   conditions2    = root["conditions2"];
+   conditions3    = root["conditions3"];
+   high1 = root["high1"];
+   low1 = root["low1"];
+   high2 = root["high2"];
+   low2 = root["low2"];
+   high3 = root["high3"];
+  low3 = root["low3"];
 
+  //screenSetter();
 
  }
 
@@ -125,17 +168,20 @@ String unit = "F";
    if (command == "simple") {
      layout = command;
      Serial.println("Layout is now simple");
+     screenSetter();
      return 1;
 
    }
    if (command == "advanced") {
      layout = command;
      Serial.println("Layout is now advanced");
+     screenSetter();
      return 1;
    }
    if (command == "3day") {
      layout = command;
      Serial.println("Layout is now 3day");
+     screenSetter();
      return 1;
    }
    else {
@@ -146,13 +192,22 @@ String unit = "F";
 
  int unitSetter(String command) {
    if (command == "F") {
+     if (unit != command) {
+       temp = temp * 1.8 + 32;
+     }
      unit = command;
-     Serial.println("F");
+    //  Serial.println("F");
+
+     screenSetter();
      return 1;
    }
    if (command == "C") {
+     if (unit != command) {
+       temp = (temp - 32)/1.8;
+     }
      unit = command;
-     Serial.println("C");
+    //  Serial.println("C");
+     screenSetter();
      return 1;
    }
    else {
@@ -162,12 +217,20 @@ String unit = "F";
 
  }
 
+ void screenSetter() {
+   if (layout == "simple") {
+     Serial.println("Simple");
+     Serial.println(temp);
+     Serial.println(condition);
 
- void publishScheduler() {
-   if (layout == "simple" || layout == "advanced") {
-      Particle.publish("getCurrentWeather", zipCode);
    }
-   if (layout == "3day") {
+   if (layout == "advanced") {
+     Serial.println("Advanced");
+     Serial.println(temp);
+     Serial.println(condition);
+     Serial.println(hum);
+     Serial.println(windS);
+     Serial.println(windD);
 
    }
  }
