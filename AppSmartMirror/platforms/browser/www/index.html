@@ -11,7 +11,7 @@
     </head>
     <body>
       <ons-page>
-          <!-- <div id="login" class="center">
+          <div id="login" class="center">
             <div class="center">
               <img src="img/logo.png" alt="Magic Mirror Logo" id="logo"/>
             </div>
@@ -22,13 +22,13 @@
               <input type="password" class="text-input text-input--underbar" placeholder="password" id="password"/>
             </div>
             <button class="button" id="login-btn">Login</button>
-          </div> -->
+          </div>
 
           <div id="main" class="center">
             <div class="toolbar">
               <div class="toolbar__center" id="toolbar">
                 <span id="version">MagicMirror v1.0</span>
-                <span id="status">Device: Offline</span>
+                <span id="status">Device: <span id="status">Offline</span></span>
               </div>
             </div>
 <!-- zip settings card -->
@@ -36,7 +36,7 @@
               <div class="card" id="zip-card">
                 <h2 class="card__title center">Set Your Location</h2>
                 <div class="card__content center" id="zip-enter">
-                  <input class="num-input text-input text-input--underbar" maxlength="5" type="number" placeholder="ZIPCODE" pattern="[0-9]{5}" id="zip-input">
+                  <input class="num-input text-input text-input--underbar" maxlength="5" min="0" type="number" placeholder="ZIPCODE" pattern="[0-9]{5}" id="zip-input">
                     <button class="button" id="zip-input-btn">Update</button>
                 </div>
               </div>
@@ -47,17 +47,17 @@
         <div class="card" id="layout-card">
           <h2 class="center">Layout Settings</h2>
           <div class="segment" id="button-group-1">
-            <button class="segment__item" id="layout-day">
-              <input type="radio" class="segment__input" name="segment-a" checked="true" id="layout-day-input" value="1">
-              <div class="segment__button">Current</div>
+            <button class="segment__item" id="layout-simple">
+              <input type="radio" class="segment__input" name="segment-a" checked="true" id="layout-simple-input" value="simple">
+              <div class="segment__button">Simple Day</div>
+            </button>
+            <button class="segment__item" id="layout-advanced">
+              <input type="radio" class="segment__input" name="segment-a" id="layout-advanced-input" value="advanced">
+              <div class="segment__button">Advanced Day</div>
             </button>
             <button class="segment__item" id="layout-three-day">
-              <input type="radio" class="segment__input" name="segment-a" id="layout-three-day-input" value="2">
+              <input type="radio" class="segment__input" name="segment-a" id="layout-three-day-input" value="3day">
               <div class="segment__button">Three Day</div>
-            </button>
-            <button class="segment__item" id="layout-five-day">
-              <input type="radio" class="segment__input" name="segment-a" id="layout-five-day-input" value="3">
-              <div class="segment__button">Five Day</div>
             </button>
           </div>
         </div>
@@ -65,19 +65,15 @@
 <!-- metric settings card -->
 
       <div class="card" id="metric-card">
-        <h2 class="center">Metric Settings</h2>
+        <h2 class="center">Unit Settings</h2>
         <div class="segment" id="button-group-2">
-          <button class="segment__item" id="metric-f">
-            <input type="radio" class="segment__input" name="segment-b" checked="true" id="metric-f-input" value="1">
+          <button class="segment__item" id="unit-f">
+            <input type="radio" class="segment__input" name="segment-b" checked="true" id="ynit-f-input" value="F">
             <div class="segment__button">Farenheit</div>
           </button>
-          <button class="segment__item" id="metric-c">
-            <input type="radio" class="segment__input" name="segment-b" id="metric-c-input" value="2">
+          <button class="segment__item" id="unit-c">
+            <input type="radio" class="segment__input" name="segment-b" id="unit-c-input" value="C">
             <div class="segment__button">Celsius</div>
-          </button>
-          <button class="segment__item" id="metric-k">
-            <input type="radio" class="segment__input" name="segment-b" id="metric-k-input" value="3">
-            <div class="segment__button">Kelvin</div>
           </button>
         </div>
       </div>

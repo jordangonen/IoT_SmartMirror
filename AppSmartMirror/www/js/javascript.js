@@ -20,17 +20,29 @@ function logSuccess(data) {
   document.getElementById("zip-input-btn").addEventListener("click", function() {
     currentZip = String(document.getElementById("zip-input").value);
 
-    var sendZip = particle.callFunction({ deviceId: deviceId, name: 'zipSetter', argument: currentZip, auth: token });
+    var sendZip = particle.callFunction({ deviceId: deviceId, name: 'zipPost', argument: currentZip, auth: token });
 
     sendZip.then(
     function(data) {
       console.log('Function called succesfully:', data);
+
     }, function(err) {
       console.log('An error occurred:', err);
     });
   });
 
+  //Get all events
+  particle.getEventStream({auth: token}).then(function(stream) {
+    stream.on('hook-error/getCurrentWeather/0', function(data) {
+      alert("Please enter a correct zip-code");
+      console.log("Event:Broken ", data);
+    });
+  });
+
 }
+
+document.getElementById("status");
+
 
 function logFail(data) {
         alert("Wrong Username/Password, Please Try Again");
@@ -38,84 +50,71 @@ function logFail(data) {
 }
 
 var currentZip;
+
 // LAYOUT SETTINGS
-var layout = "1";
-document.getElementById("layout-day").addEventListener("click", function() {
-    layout=document.getElementById("layout-day-input").value;
-    var sendLayout = particle.callFunction({ deviceId: deviceId, name: 'sendLayout', argument: layout, auth: token });
-    sendLayout.then(
+var layout = "simple";
+document.getElementById("layout-simple").addEventListener("click", function() {
+    layout=document.getElementById("layout-simple-input").value;
+
+    var sendLayout1 = particle.callFunction({ deviceId: deviceId, name: 'layoutSetter', argument: layout, auth: token });
+    sendLayout1.then(
     function(data) {
       console.log('Function called succesfully:', data);
     }, function(err) {
       console.log('An error occurred:', err);
     });
-    alert("Layout Changed");
   });
 
+document.getElementById("layout-advanced").addEventListener("click", function() {
+    layout=document.getElementById("layout-advanced-input").value;
+
+    var sendLayout2 = particle.callFunction({ deviceId: deviceId, name: 'layoutSetter', argument: layout, auth: token });
+
+    sendLayout2.then(
+    function(data) {
+      console.log('Function called succesfully:', data);
+    }, function(err) {
+      console.log('An error occurred:', err);
+    });
+  });
 document.getElementById("layout-three-day").addEventListener("click", function() {
     layout=document.getElementById("layout-three-day-input").value;
 
-    var sendLayout = particle.callFunction({ deviceId: deviceId, name: 'sendLayout', argument: layout, auth: token });
+    var sendLayout3 = particle.callFunction({ deviceId: deviceId, name: 'layoutSetter', argument: layout, auth: token });
 
-    sendLayout.then(
+    sendLayout3.then(
     function(data) {
       console.log('Function called succesfully:', data);
     }, function(err) {
       console.log('An error occurred:', err);
     });
-    alert("Layout Changed");
   });
-document.getElementById("layout-five-day").addEventListener("click", function() {
-    layout=document.getElementById("layout-five-day-input").value;
 
-    var sendLayout = particle.callFunction({ deviceId: deviceId, name: 'sendLayout', argument: layout, auth: token });
 
-    sendLayout.then(
-    function(data) {
-      console.log('Function called succesfully:', data);
-    }, function(err) {
-      console.log('An error occurred:', err);
-    });
-    alert("Layout Changed");
-  });
+
 
 // METRIC SETTINGS
-var metric="1";
-document.getElementById("metric-f").addEventListener("click", function() {
-    metric=document.getElementById("metric-f-input").value;
-    var sendMetric = particle.callFunction({ deviceId: deviceId, name: 'sendMetric', argument: layout, auth: token });
-    sendMetric.then(
+var unit="F";
+document.getElementById("unit-f").addEventListener("click", function() {
+    // unit=document.getElementById("unit-f-input").value;
+    var sendUnit1 = particle.callFunction({ deviceId: deviceId, name: 'unitSetter', argument: 'F', auth: token });
+    sendUnit1.then(
     function(data) {
       console.log('Function called succesfully:', data);
     }, function(err) {
       console.log('An error occurred:', err);
     });
-    alert("Metric Changed");
   });
 
-document.getElementById("metric-c").addEventListener("click", function() {
-    layout=document.getElementById("metric-c-input").value;
+document.getElementById("unit-c").addEventListener("click", function() {
+    // unit=document.getElementById("unit-c-input").value;
 
-    var sendMetric = particle.callFunction({ deviceId: deviceId, name: 'sendMetric', argument: layout, auth: token });
+    var sendUnit2 = particle.callFunction({ deviceId: deviceId, name: 'unitSetter', argument: 'C', auth: token });
 
-    sendMetric.then(
+    sendUnit2.then(
     function(data) {
       console.log('Function called succesfully:', data);
     }, function(err) {
       console.log('An error occurred:', err);
     });
-    alert("Layout Changed");
-  });
-document.getElementById("metric-k").addEventListener("click", function() {
-    layout=document.getElementById("metric-k-input").value;
-
-    var sendMetric = particle.callFunction({ deviceId: deviceId, name: 'sendMetric', argument: layout, auth: token });
-
-    sendMetric.then(
-    function(data) {
-      console.log('Function called succesfully:', data);
-    }, function(err) {
-      console.log('An error occurred:', err);
-    });
-    alert("Layout Changed");
   });
