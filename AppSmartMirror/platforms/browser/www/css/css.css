@@ -1,6 +1,9 @@
 #main {
   display: none;
 }
+#waiting-screen {
+  display: none;
+}
 
 #login-btn {
   padding: 10px;
