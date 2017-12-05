@@ -24,6 +24,9 @@
             <button class="button" id="login-btn">Login</button>
           </div>
 
+          <div id="waiting-screen">
+            <h1>Please connect photon and re-login</h1>
+          </div>
           <div id="main" class="center">
             <div class="toolbar">
               <div class="toolbar__center" id="toolbar">
@@ -36,7 +39,7 @@
               <div class="card" id="zip-card">
                 <h2 class="card__title center">Set Your Location</h2>
                 <div class="card__content center" id="zip-enter">
-                  <input class="num-input text-input text-input--underbar" maxlength="5" min="0" type="number" placeholder="ZIPCODE" pattern="[0-9]{5}" id="zip-input">
+                  <input class="num-input text-input text-input--underbar" maxlength="5" minlength="5" min="0" type="number" placeholder="ZIPCODE" pattern="[0-9]{5}" id="zip-input">
                     <button class="button" id="zip-input-btn">Update</button>
                 </div>
               </div>
@@ -55,10 +58,10 @@
               <input type="radio" class="segment__input" name="segment-a" id="layout-advanced-input" value="advanced">
               <div class="segment__button">Advanced Day</div>
             </button>
-            <button class="segment__item" id="layout-three-day">
+            <!-- <button class="segment__item" id="layout-three-day">
               <input type="radio" class="segment__input" name="segment-a" id="layout-three-day-input" value="3day">
               <div class="segment__button">Three Day</div>
-            </button>
+            </button> -->
           </div>
         </div>
 
@@ -68,7 +71,7 @@
         <h2 class="center">Unit Settings</h2>
         <div class="segment" id="button-group-2">
           <button class="segment__item" id="unit-f">
-            <input type="radio" class="segment__input" name="segment-b" checked="true" id="ynit-f-input" value="F">
+            <input type="radio" class="segment__input" name="segment-b" checked="true" id="unit-f-input" value="F">
             <div class="segment__button">Farenheit</div>
           </button>
           <button class="segment__item" id="unit-c">
