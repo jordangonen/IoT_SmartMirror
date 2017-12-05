@@ -7,8 +7,8 @@
 
 
  #include <ArduinoJson.h>
-#include "../lib/Adafruit_HX8357/src/Adafruit_HX8357.h"
- #include <../lib/Adafruit_mfGFX/src/Adafruit_mfGFX/Adafruit_mfGFX.h>
+#include <Adafruit_HX8357.h>
+
 
 
 
@@ -42,7 +42,7 @@ String unit = "F";
 
 void apiFetch() {
    Particle.publish("getCurrentWeather", zipCode);
-   Particle.publish("getThreeDayWeather", zipCode);
+
    delay(3000);
 
 }
@@ -59,7 +59,7 @@ Adafruit_HX8357 tft = Adafruit_HX8357(TFT_CS, TFT_DC, TFT_RST);
  Timer apiFetchTimer(30000, apiFetch);
 
  void setup() {
-   Serial.begin(115200);
+   Serial.begin(9600);
 
    tft.begin(HX8357D);
    tft.setRotation(1);
