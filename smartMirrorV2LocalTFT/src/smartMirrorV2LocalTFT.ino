@@ -1,15 +1,16 @@
-/*
- * Project IoT_SmartMirror
- * Description: Final 222 Project
- * Author: Justin Friedman, Jordan Gonen
- * Date: Fall 2017
- */
+// This #include statement was automatically added by the Particle IDE.
+#include <ArduinoJson.h>
 
 
- #include <ArduinoJson.h>
+
+
+
+// This #include statement was automatically added by the Particle IDE.
 #include <Adafruit_HX8357.h>
-
-
+// use hardware SPI
+#define OLED_DC     D3
+#define OLED_CS     D4
+#define OLED_RESET  D5
 
 
 
@@ -32,8 +33,8 @@
  double windS;
  double windD;
 
-String zipCode = "10583";
-String lastZip = "10583";
+String zipCode = "99559";
+String lastZip = "99559";
 String layout = "simple";
 String unit = "F";
 
@@ -46,7 +47,7 @@ void apiFetch() {
    delay(3000);
 
 }
-
+Timer apiFetchTimer(30000, apiFetch);
 
 
 const int TFT_CS = A2;
@@ -55,18 +56,9 @@ const int TFT_RST = -1;
 
 
 Adafruit_HX8357 tft = Adafruit_HX8357(TFT_CS, TFT_DC, TFT_RST);
-
- Timer apiFetchTimer(30000, apiFetch);
-
- void setup() {
-   Serial.begin(9600);
-
-   tft.begin(HX8357D);
-   tft.setRotation(1);
-   tft.fillScreen(HX8357_BLACK);
-   tft.setTextWrap(true);
-
-   Particle.variable("currentZip", zipCode);
+void setup() {
+    Serial.begin(9600);
+    Particle.variable("currentZip", zipCode);
 
    Particle.variable("currentUnit", unit);
    Particle.variable("layout", layout);
@@ -75,26 +67,30 @@ Adafruit_HX8357 tft = Adafruit_HX8357(TFT_CS, TFT_DC, TFT_RST);
    Particle.subscribe("hook-response/getCurrentWeather/0", currentWeatherHandler, MY_DEVICES);
    Particle.subscribe("hook-error/getCurrentWeather/0", currentWeatherError, MY_DEVICES);
 
-   Particle.subscribe("hook-response/getCurrentWeather/0", threeDayWeatherHandler, MY_DEVICES);
 
    Particle.function("zipPost", zipPost);
    Particle.function("layoutSetter", layoutSetter);
    Particle.function("unitSetter", unitSetter);
    apiFetchTimer.start();
+    tft.begin(HX8357D);
+
+  tft.setTextSize(7);       // text size
+  tft.fillScreen(HX8357_BLACK);
+
+  tft.setTextWrap(false); // turn off text wrapping so we can do scrolling
+  tft.setRotation(1);
+  bool call;
+  call = Particle.publish("getCurrentWeather", "99559");
 
 
- }
+}
+
+void loop() {
 
 
- void loop() {
+}
 
-
-
-
-
- }
-
- void currentWeatherHandler(const char *event, const char *data) {
+void currentWeatherHandler(const char *event, const char *data) {
    // Handle the webhook response
 
 
@@ -106,10 +102,6 @@ Adafruit_HX8357 tft = Adafruit_HX8357(TFT_CS, TFT_DC, TFT_RST);
 
      char json[500] = "";
      str.toCharArray(json, 500);
-    //  Serial.println(json);
-
-
-
 
     StaticJsonBuffer<500> jsonBuffer;
 
@@ -244,13 +236,39 @@ Adafruit_HX8357 tft = Adafruit_HX8357(TFT_CS, TFT_DC, TFT_RST);
 
  void screenSetter() {
    if (layout == "simple") {
-     tft.println("Simple");
-     tft.println(temp);
+      tft.setTextSize(7);       // text size
+        tft.setCursor(0,0);
+        tft.fillScreen(HX8357_BLACK);
+
+     tft.println(name);
+     tft.print(temp);
+     tft.print(" ");
+     tft.println(unit);
      tft.println(condition);
+     Serial.println("Simple");
+     Serial.println(name);
+     Serial.println(temp);
+     Serial.println(condition);
 
    }
    if (layout == "advanced") {
+     tft.setTextSize(4);       // text size
+             tft.setCursor(0,0);
+             tft.fillScreen(HX8357_BLACK);
+     tft.println(name);
+     tft.print(temp);
+     tft.print(" ");
+     tft.println(unit);
+     tft.println(condition);
+     tft.print("Humidity ");
+     tft.print(hum);
+     tft.println(" percent");
+     tft.print("Wind Speed MPH: ");
+     tft.println(windS);
+     tft.print("Wind Direction º");
+     tft.println(windD);
      Serial.println("Advanced");
+     Serial.println(name);
      Serial.println(temp);
      Serial.println(condition);
      Serial.println(hum);
