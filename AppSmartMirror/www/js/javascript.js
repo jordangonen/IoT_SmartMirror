@@ -66,7 +66,12 @@ function logSuccess(data) {
 
 
         document.getElementById("zip-input-btn").addEventListener("click", function() {
+
           currentZip = String(document.getElementById("zip-input").value);
+          if(currentZip.length!=5) {
+            alert("Please enter a valid zip code length");
+            return;
+          }
 
           var sendZip = particle.callFunction({ deviceId: deviceId, name: 'zipPost', argument: currentZip, auth: token });
 
@@ -143,6 +148,7 @@ document.getElementById("layout-advanced").addEventListener("click", function() 
 // METRIC SETTINGS
 document.getElementById("unit-f").addEventListener("click", function() {
     // unit=document.getElementById("unit-f-input").value;
+    
     var sendUnit1 = particle.callFunction({ deviceId: deviceId, name: 'unitSetter', argument: 'F', auth: token });
     sendUnit1.then(
     function(data) {
