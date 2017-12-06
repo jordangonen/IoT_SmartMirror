@@ -91,7 +91,7 @@ void currentWeatherHandler(const char *event, const char *data) {
 
    //unuseable string
    String str = String(data);
-
+   str = str.replace(" ", "");
 
       // Serial.println(str);
 
@@ -107,12 +107,13 @@ void currentWeatherHandler(const char *event, const char *data) {
     return;
   }
   //assign vals
-   name    = root["name"];
+
    condition  = root["condition"];
    temp = root["temp"];
    hum = root["hum"];
    windS = root["windS"];
    windD = root["windD"];
+    name    = root["name"].asString();
 
    //units
    if ( unit == "F") {
