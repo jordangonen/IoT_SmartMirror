@@ -262,10 +262,10 @@ void currentWeatherHandler(const char *event, const char *data) {
      tft.println(condition);
      tft.print("Humidity ");
      tft.print(hum);
-     tft.println(" percent");
-     tft.print("Wind Speed MPH: ");
+     tft.println(" %");
+     tft.print("Wind MPH: ");
      tft.println(windS);
-     tft.print("Wind Direction º");
+     tft.print("Wind Deg: ");
      tft.println(windD);
      Serial.println("Advanced");
      Serial.println(name);
