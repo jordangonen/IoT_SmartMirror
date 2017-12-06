@@ -1,88 +1,104 @@
 #main {
-  display: none;
+        display: none;
 }
+
 #waiting-screen {
-  display: none;
+        display: none;
 }
+
 #logout {
-  display:none;
-  margin: auto;
-  text-align: center;
+        display: none;
+        margin: auto;
+        text-align: center;
 }
 
 #login-btn {
-  padding: 10px;
-  margin-top: 10%;
-  width: 40%;
+        padding: 10px;
+        margin-top: 10%;
+        width: 40%;
 }
+
 .center {
-  margin: auto;
-  text-align: center;
+        margin: auto;
+        text-align: center;
 }
+
 #logo {
-  width: 65%;
-  height: auto;
+        width: 65%;
+        height: auto;
 }
-#zip-input-btn {
-}
+
+#zip-input-btn {}
+
 #button-group {
-  padding-top: 30%;
+        padding-top: 30%;
 }
+
 #zip-enter {
-  padding-bottom: 100px;
+        padding-bottom: 100px;
 }
+
 #zip-settings {
-  height: 20px;
-  width: auto;
-  margin-bottom: 100px;
-  padding: 1px 0 0 0 ;
+        height: 20px;
+        width: auto;
+        margin-bottom: 100px;
+        padding: 1px 0 0 0;
 }
+
 #zip-card {
-  margin-top: 5%;
-  height: 150px;
+        margin-top: 5%;
+        height: 150px;
 }
+
 #version {
-  float: left;
-  margin-left: 5%;
+        float: left;
+        margin-left: 5%;
 }
+
 #status {
-  float: right;
-  margin-right: 5%;
-  color: #D3D3D3;
+        float: right;
+        margin-right: 5%;
+        color: #D3D3D3;
 }
 
 #layout-card {
-  margin-top: 45%;
-  height: 150px;
+        margin-top: 45%;
+        height: 150px;
 }
+
 #layout-settings {
-  height: 20px;
-  width: auto;
-  margin-bottom: 100px;
-  padding: 1px 0 0 0 ;
+        height: 20px;
+        width: auto;
+        margin-bottom: 100px;
+        padding: 1px 0 0 0;
 }
+
 #metric-card {
-  margin-top: 5%;
-  height: 150px;
+        margin-top: 5%;
+        height: 150px;
 }
+
 #metric-settings {
-  height: 20px;
-  width: auto;
-  margin-bottom: 100px;
-  padding: 1px 0 0 0 ;
+        height: 20px;
+        width: auto;
+        margin-bottom: 100px;
+        padding: 1px 0 0 0;
 }
+
 #layout-enter {
-  padding-bottom: 100px;
+        padding-bottom: 100px;
 }
+
 #button-group-1 {
-  width: 280px;
-  margin-top: 0;
-  padding-top: 5px;
-  margin-left: 8%;
+        width: 280px;
+        margin-top: 0;
+        padding-top: 5px;
+        margin-left: 8%;
 }
-#button-group-2{
-  width: 280px;
-  margin-top: 0;
-  padding-top: 5px;
-  margin-left: 8%;
+
+#button-group-2 {
+        width: 280px;
+        margin-top: 0;
+        padding-top: 5px;
+        margin-left: 8%;
 }
