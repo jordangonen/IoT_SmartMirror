@@ -13,6 +13,8 @@ var token;
 function logSuccess(data) {
     document.getElementById("login").style.display = "none";
     document.getElementById("waiting-screen").style.display = "block";
+    document.getElementById("logout").style.display = "block";
+
     token = data.body.access_token;
 
     particle.getVariable({ deviceId: deviceId, name: 'currentZip', auth: token }).then(function(stream) {
@@ -53,7 +55,14 @@ function logSuccess(data) {
         console.log('Device variable retrieved successfully:', stream);
         document.getElementById("waiting-screen").style.display = "none";
         document.getElementById("login").style.display = "none";
+        document.getElementById("logout").style.display = "block";
+
         document.getElementById("main").style.display = "block";
+
+        document.getElementById("logout").addEventListener("click", function() {
+          location.reload();
+        });
+
 
 
         document.getElementById("zip-input-btn").addEventListener("click", function() {
@@ -70,12 +79,12 @@ function logSuccess(data) {
         });
 
         //Get all events
-        particle.getEventStream({auth: token}).then(function(stream) {
-          stream.on('hook-error/getCurrentWeather/0', function(data) {
-            alert("Please enter a correct zip-code");
-            console.log("Event:Broken ", data);
-          });
-        });
+        // particle.getEventStream({auth: token}).then(function(stream) {
+        //   stream.on('hook-error/getCurrentWeather/0', function(data) {
+        //     alert("Please enter a correct zip-code");
+        //     console.log("Event:Broken ", data);
+        //   });
+        // });
 
 
     }, function(err) {
@@ -85,22 +94,18 @@ function logSuccess(data) {
 }
 
 
-
-
-
-
 function logFail(data) {
         alert("Wrong Username/Password, Please Try Again");
         console.log("fail");
 }
 
 var currentZip;
+var layout;
 
 // LAYOUT SETTINGS
 document.getElementById("layout-simple").addEventListener("click", function() {
-    layout=document.getElementById("layout-simple-input").value;
-
-    var sendLayout1 = particle.callFunction({ deviceId: deviceId, name: 'layoutSetter', argument: layout, auth: token });
+    console.log("sending simple layout");
+    var sendLayout1 = particle.callFunction({ deviceId: deviceId, name: 'layoutSetter', argument: "simple", auth: token });
     sendLayout1.then(
     function(data) {
       console.log('Function called succesfully:', data);
@@ -110,9 +115,9 @@ document.getElementById("layout-simple").addEventListener("click", function() {
   });
 
 document.getElementById("layout-advanced").addEventListener("click", function() {
-    layout=document.getElementById("layout-advanced-input").value;
+    console.log("sending advanced layout");
 
-    var sendLayout2 = particle.callFunction({ deviceId: deviceId, name: 'layoutSetter', argument: layout, auth: token });
+    var sendLayout2 = particle.callFunction({ deviceId: deviceId, name: 'layoutSetter', argument: "advanced", auth: token });
 
     sendLayout2.then(
     function(data) {

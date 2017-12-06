@@ -4,6 +4,11 @@
 #waiting-screen {
   display: none;
 }
+#logout {
+  display:none;
+  margin: auto;
+  text-align: center;
+}
 
 #login-btn {
   padding: 10px;
