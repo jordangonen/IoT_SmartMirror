@@ -5,8 +5,14 @@
  * Date: Fall 2017
  */
 
- #include "API/magicMirrorHWAPI.h"
+
  #include <ArduinoJson.h>
+#include <Adafruit_HX8357.h>
+
+
+
+
+
 
 
  const char* conditions1;
@@ -31,17 +37,35 @@ String lastZip = "10583";
 String layout = "simple";
 String unit = "F";
 
+
+
+
 void apiFetch() {
    Particle.publish("getCurrentWeather", zipCode);
-   Particle.publish("getThreeDayWeather", zipCode);
+
    delay(3000);
-   screenSetter();
+
 }
 
-Timer apiFetchTimer(30000, apiFetch);
+
+
+const int TFT_CS = A2;
+const int TFT_DC = DAC;
+const int TFT_RST = -1;
+
+
+Adafruit_HX8357 tft = Adafruit_HX8357(TFT_CS, TFT_DC, TFT_RST);
+
+ Timer apiFetchTimer(30000, apiFetch);
 
  void setup() {
    Serial.begin(9600);
+
+   tft.begin(HX8357D);
+   tft.setRotation(1);
+   tft.fillScreen(HX8357_BLACK);
+   tft.setTextWrap(true);
+
    Particle.variable("currentZip", zipCode);
 
    Particle.variable("currentUnit", unit);
@@ -60,6 +84,7 @@ Timer apiFetchTimer(30000, apiFetch);
 
 
  }
+
 
  void loop() {
 
@@ -219,9 +244,9 @@ Timer apiFetchTimer(30000, apiFetch);
 
  void screenSetter() {
    if (layout == "simple") {
-     Serial.println("Simple");
-     Serial.println(temp);
-     Serial.println(condition);
+     tft.println("Simple");
+     tft.println(temp);
+     tft.println(condition);
 
    }
    if (layout == "advanced") {
