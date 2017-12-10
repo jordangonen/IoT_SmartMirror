@@ -8,7 +8,7 @@ Thus, the beta just focused on weather data and developing a robust webhook-API 
 Webhook responces are parsed in mustache case on Particle Cloud with additional parsing done on the emmbedded hardware with the ArduinoJson Library and built in string and const char methods. 
 
 ## User Guide 
-
+https://github.com/justinfriedman/IoT_SmartMirror/blob/master/github-imgs/Guide.pdf
 ## Hardware
 
 Particle Photon 
@@ -16,6 +16,6 @@ Smart Mirror Glass
 3.5" TFT 320x480 + Touchscreen Breakout Board w/MicroSD Socket - HXD8357D
 
 ## Images
-![front](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "front")
-![back](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "back")
+![front](https://github.com/justinfriedman/IoT_SmartMirror/blob/master/github-imgs/IMG_7566.JPG "front")
+![back]https://github.com/justinfriedman/IoT_SmartMirror/blob/master/github-imgs/IMG_0192.JPG "back")
 
