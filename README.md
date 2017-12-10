@@ -17,5 +17,5 @@ Smart Mirror Glass
 
 ## Images
 ![front](https://github.com/justinfriedman/IoT_SmartMirror/blob/master/github-imgs/IMG_7566.JPG "front")
-![back]https://github.com/justinfriedman/IoT_SmartMirror/blob/master/github-imgs/IMG_0192.JPG "back")
+![back](https://github.com/justinfriedman/IoT_SmartMirror/blob/master/github-imgs/IMG_0192.JPG "back")
 
